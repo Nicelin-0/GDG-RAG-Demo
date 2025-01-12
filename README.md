@@ -6,6 +6,8 @@
 
 # Instructions
 
+View the UI of the live app at [VaultApp](https://vaultapp.streamlit.app)
+
 ## Recommended system specifications
 
 - **GPU:** 8 GB VRAM
@@ -55,6 +57,20 @@
 - Run vault.py with streamlit
 
   `streamlit run code\vault.py` or `python -m streamlit run code\vault.py`
+
+## Debugging
+
+- If you face any conflicts with existing dependencies, make sure you have activated your virtual environment
+
+- If you run into an error showing:
+  ```shell
+  httpx.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+  ```
+  Then try running the following to resolve the issue
+    ```shell
+    ollama serve
+    ```
+- **If you run into any other issues which have not been listed above, please feel free to reach out to us**
 
 ## Reach Out
 
