@@ -79,3 +79,9 @@ Have any doubts? Feel free to reach out to us at:
 
 - Aditya S (as2397@hw.ac.uk)
 - Jonathan John Thomas (jjt2002@hw.ac.uk)
+
+## Additional Resources
+
+[Source code on Google Colab](https://colab.research.google.com/drive/1Hqru_V6wlqE686eDngfkK_9dAZHkMrIt?usp=sharing)
+[Gemma 2 - Local RAG with Ollama and LangChain](https://www.youtube.com/watch?v=daZOrbMs61I&t=8s)
+[How to Build a Local RAG Knowledge Base with Google Gemma 2 2B](https://sebastian-petrus.medium.com/building-a-local-rag-knowledge-base-with-google-gemma-2-2b-5823cdfe884d)
