@@ -1,6 +1,6 @@
 # GDG-RAG-Demo
 
-View the UI of the live app at [VaultApp](https://vaultapp.streamlit.app)
+View the UI of the live app at [VaultApp](https://vaultapp.streamlit.app) <br>
 View the code in Google Colab at [GoogleColab](https://colab.research.google.com/drive/1Hqru_V6wlqE686eDngfkK_9dAZHkMrIt?usp=sharing)
 
 ## Supported Python versions
