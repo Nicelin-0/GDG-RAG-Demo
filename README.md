@@ -14,6 +14,8 @@ View the code in Google Colab at [GoogleColab](https://colab.research.google.com
 - **GPU:** 8 GB VRAM
 - **RAM:** 16 GB RAM
 
+**Don't worry if you have a GPU with a lesser amount of VRAM, 8 GB is recommended mostly for use with the Gemma:9b, however this application works perfectly fine with the Gemma:2b as well, so a minimum of 4 GB VRAM should suffice**
+
 ## How to run the Streamlit application
 
 - Make sure you have Python and Git installed on your system
