@@ -130,7 +130,7 @@ def chat(user_query, llm, retriever, conversation_history):
     
     
     # Add system message and human message 
-    messages.insert(0, SystemMessage("Answer the following user query using the retrieved context. Provide a concise and informative answer that directly addresses the user's question. Use a maximum of three sentences to answer the question."))
+    messages.insert(0, SystemMessage("Answer the following question using the retrieved context. Provide a concise and informative answer that directly addresses the user's question. If the provided context does not contain the answer to the user's question, simply reply: 'I couldn't find the necessary information to answer your question. Please update your prompt or provide more documents that may be relevant to your question.' Use a maximum of three sentences to answer the question."))
     messages.append(HumanMessage(f"""Question: 
 ```
 {user_query}
@@ -184,7 +184,7 @@ vector_store = Chroma(
 
 # Use the vector store as a retriever
 retriever = vector_store.as_retriever(
-        search_type="mmr", 
+        search_type="similarity", 
         search_kwargs={"k": st.session_state['top_k']}
 )
 
