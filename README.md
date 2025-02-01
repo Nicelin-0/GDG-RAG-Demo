@@ -1,5 +1,5 @@
 # The Vault App
-## Demo for "Hands-On Introduction to Retrieval Augmented Generation" for Build with AI 2025 @ [Google Developer Group - Heriot-Watt University, Dubai](https://gdg.community.dev/events/details/google-gdg-on-campus-heriot-watt-university-dubai-dubai-united-arab-emirates-presents-build-with-ai-a-hands-on-introduction-to-retrieval-augmented-generation-rag/)
+## Demo for [Build with AI - A Hands-On Introduction to Retrieval Augmented Generation (RAG)](https://gdg.community.dev/events/details/google-gdg-on-campus-heriot-watt-university-dubai-dubai-united-arab-emirates-presents-build-with-ai-a-hands-on-introduction-to-retrieval-augmented-generation-rag/) @ Google Developer Group - Heriot-Watt University, Dubai
 
 View the UI of the live app at [VaultApp](https://vaultapp.streamlit.app) <br>
 View the Google Colab version at [GoogleColab](https://colab.research.google.com/drive/1Hqru_V6wlqE686eDngfkK_9dAZHkMrIt?usp=sharing)
@@ -54,7 +54,7 @@ If the application is not fast enough on your device, **try the Google Colab ver
   ```
   
 - Run app.py with streamlit
-- 
+  
   ```shell
   streamlit run code\app.py` or `python -m streamlit run code\app.py
   ```
@@ -73,15 +73,19 @@ If the application is not fast enough on your device, **try the Google Colab ver
   ```
 - **If you run into any other issues which have not been listed above, please feel free to reach out to us.**
 
-## Additional Resources
-
-[Source code on Google Colab](https://colab.research.google.com/drive/1Hqru_V6wlqE686eDngfkK_9dAZHkMrIt?usp=sharing) <br>
-[Gemma 2 - Local RAG with Ollama and LangChain](https://www.youtube.com/watch?v=daZOrbMs61I&t=8s) <br>
-[How to Build a Local RAG Knowledge Base with Google Gemma 2 2B](https://sebastian-petrus.medium.com/building-a-local-rag-knowledge-base-with-google-gemma-2-2b-5823cdfe884d) <br>
-
 ## Reach Out
 
 Have any doubts? Feel free to reach out to us at:
 
 - Aditya S (as2397@hw.ac.uk)
 - Jonathan John Thomas (jjt2002@hw.ac.uk)
+
+## Additional Resources
+
+1.	Using Chroma vector store with LangChain: https://python.langchain.com/docs/integrations/vectorstores/chroma/
+2.	Ollama Chat models with LangChain: https://python.langchain.com/docs/integrations/chat/ollama/
+3.	Ollama Embeddings with LangChain: https://python.langchain.com/docs/integrations/text_embedding/ollama/#indexing-and-retrieval
+4.	LangChain text splitters: https://python.langchain.com/docs/how_to/recursive_text_splitter/
+5.	Streamlit UI for LLM Chat Apps: https://docs.streamlit.io/develop/tutorials/llms/build-conversational-apps
+
+
