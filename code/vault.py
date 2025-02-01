@@ -36,14 +36,7 @@ def add_to_vector_store(file, vector_store, chunk_size=1000, chunk_overlap=200):
             document.metadata["source"] = file.name
 
         print(f"Loaded {len(data)} documents from {file.name}")
-        # Use Langchain Text Splitter to chunk the document into smaller pieces
-        # From LangChain Docs (https://python.langchain.com/docs/how_to/recursive_text_splitter/):
-        # This text splitter is the recommended one for generic text. 
-        # It is parameterized by a list of characters. It tries to split on them in order until 
-        # the chunks are small enough. The default list is ["\n\n", "\n", " ", ""]. 
-        # This has the effect of trying to keep all paragraphs (and then sentences, and then words) 
-        # together as long as possible, as those would generically seem to be the strongest semantically 
-        # related pieces of text.
+        # Use Langchain Text Splitter to split the document into smaller chunks
         splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, 
                                                   chunk_overlap=chunk_overlap,
                                                   add_start_index=True,  # track index in original document
@@ -137,7 +130,7 @@ def chat(user_query, llm, retriever, conversation_history):
     
     
     # Add system message and human message 
-    messages.insert(0, SystemMessage("Answer the following user query using the retrieved context. Provide a concise and informative answer that directly addresses the user's question. Use a maximum of three sentences to answer the question."))
+    messages.insert(0, SystemMessage("Answer the following question using the retrieved context. Provide a concise and informative answer that directly addresses the user's question. If the provided context does not contain the answer to the user's question, simply reply: 'I couldn't find the necessary information to answer your question. Please update your prompt or provide more documents that may be relevant to your question.' Use a maximum of three sentences to answer the question."))
     messages.append(HumanMessage(f"""Question: 
 ```
 {user_query}
@@ -188,15 +181,17 @@ vector_store = Chroma(
     persist_directory="./chroma_langchain_db",
 )
 
+
 # Use the vector store as a retriever
 retriever = vector_store.as_retriever(
-        search_type="mmr", 
+        search_type="similarity", 
         search_kwargs={"k": st.session_state['top_k']}
 )
 
 # ---------------------------- Streamlit UI ----------------------------
 # # 1. DISPLAY CHAT MESSAGES
 st.title("Vault App")
+
 st.markdown("Welcome to the Vault App! Upload a file and ask a question to retrieve relevant context from the uploaded documents.")
 
 for message in st.session_state.messages:
@@ -225,11 +220,20 @@ st.session_state["top_k"] = st.sidebar.slider("Top K Context", 1, 5, value=st.se
 
 # Toggle to reset conversation
 st.sidebar.button("Reset Conversation", on_click= lambda: st.session_state.update(messages=[]))
-    
+
+# Toggle to clear uploaded files
+def clear_uploaded_files():
+    st.session_state.update(uploaded_files=[])
+    vector_store.reset_collection()
+    print("Cleared vault documents")
+    st.toast("**CLEARED VAULT DOCUMENTS**", icon = "🚨")
+
+st.sidebar.button("Clear Vault Documents", on_click = clear_uploaded_files)
 
 # 3. USER INPUT
-# When the user_query is not None, 
-if user_query := st.chat_input("Enter your message"):
+# When the user enters a query
+user_query = st.chat_input("Enter your message")
+if user_query:
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": user_query})
 
