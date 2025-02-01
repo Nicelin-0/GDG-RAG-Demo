@@ -1,44 +1,48 @@
-# GDG-RAG-Demo
+# The Vault App
+## Demo for [Build with AI - A Hands-On Introduction to Retrieval Augmented Generation (RAG)](https://gdg.community.dev/events/details/google-gdg-on-campus-heriot-watt-university-dubai-dubai-united-arab-emirates-presents-build-with-ai-a-hands-on-introduction-to-retrieval-augmented-generation-rag/) @ Google Developer Group - Heriot-Watt University, Dubai
 
 View the UI of the live app at [VaultApp](https://vaultapp.streamlit.app) <br>
-View the code in Google Colab at [GoogleColab](https://colab.research.google.com/drive/1Hqru_V6wlqE686eDngfkK_9dAZHkMrIt?usp=sharing)
+View the Google Colab version at [GoogleColab](https://colab.research.google.com/drive/1Hqru_V6wlqE686eDngfkK_9dAZHkMrIt?usp=sharing)
 
-## Supported Python versions
+## Instructions
+
+### Supported Python versions
 
 ![Python 3.12](https://github.com/jonathanjthomas/GDG-RAG-Demo/actions/workflows/python-3.12.yml/badge.svg)
 
-# Instructions
-
-## Recommended system specifications
+### Recommended system specifications
 
 - **GPU:** 8 GB VRAM
 - **RAM:** 16 GB RAM
 
-**Don't worry if you have a GPU with a lesser amount of VRAM, 8 GB is recommended mostly for use with the Gemma:9b, however this application works perfectly fine with the Gemma:2b as well, so a minimum of 4 GB VRAM should suffice**
+**Don't worry if you have a GPU with a lesser amount of VRAM, 8 GB is recommended for use with the Gemma:9b model, however, this application works perfectly fine with the Gemma:2b as well, so a minimum of 4 GB VRAM should suffice.**
 
-## How to run the Streamlit application
+If the application is not fast enough on your device, **try the Google Colab version** [here](https://colab.research.google.com/drive/1Hqru_V6wlqE686eDngfkK_9dAZHkMrIt?usp=sharing).
 
-- Make sure you have Python and Git installed on your system
-- Clone the repository on to your local machine using Git
-
-  ```shell
-  git clone https://github.com/jonathanjthomas/GDG-RAG-Demo.git
+### Demo Set-Up (For Build with AI Attendees)
+- Download and install [Ollama](https://ollama.com/download)
+- Pull the required Ollama models (gemma2, gemma2:2b and nomic-embed-text)
+  
+ ```shell
+  ollama pull gemma2:2b
+  ollama pull gemma2
+  ollama pull nomic-embed-text
   ```
 
-- Navigate to the repository directory
-- Set up a virtual environment using the below command
+- Create a folder, and a Python notebook inside it named "app.py"
+- Set up a virtual environment using the below command (Recommended)
 
   ```shell
   python -m venv venv
   ```
 
-- Activate your virtual environment using
+- Activate your virtual environment using the following command:
 
-  - Windows
+  - On Windows:
     ```shell
     venv\Scripts\Activate
     ```
-  - Linux and MacOS
+  - On Linux/MacOS:
     ```shell
     source venv/bin/activate
     ```
@@ -46,26 +50,20 @@ View the code in Google Colab at [GoogleColab](https://colab.research.google.com
 - Install all the required libraries and dependencies
 
   ```shell
-  pip install -r requirements.txt
+  pip install langchain-ollama langchain-chroma>=0.1.2 langchain-community pypdf jq streamlit
   ```
-
-- Download and install [Ollama](https://ollama.com/download)
-- Pull the required Ollama models (gemma2:2b and nomic-embed-text)
-
+  
+- Run app.py with streamlit
+  
   ```shell
-  ollama pull gemma2:2b
-  ollama pull nomic-embed-text
+  streamlit run code\app.py` or `python -m streamlit run code\app.py
   ```
-
-- Run vault.py with streamlit
-
-  `streamlit run code\vault.py` or `python -m streamlit run code\vault.py`
 
 ## Debugging
 
 - If you face any conflicts with existing dependencies, make sure you have activated your virtual environment
 
-- If you run into an error showing:
+- If you run into the following error:
   ```shell
   httpx.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
   ```
@@ -73,13 +71,7 @@ View the code in Google Colab at [GoogleColab](https://colab.research.google.com
   ```shell
   ollama serve
   ```
-- **If you run into any other issues which have not been listed above, please feel free to reach out to us**
-
-## Additional Resources
-
-[Source code on Google Colab](https://colab.research.google.com/drive/1Hqru_V6wlqE686eDngfkK_9dAZHkMrIt?usp=sharing) <br>
-[Gemma 2 - Local RAG with Ollama and LangChain](https://www.youtube.com/watch?v=daZOrbMs61I&t=8s) <br>
-[How to Build a Local RAG Knowledge Base with Google Gemma 2 2B](https://sebastian-petrus.medium.com/building-a-local-rag-knowledge-base-with-google-gemma-2-2b-5823cdfe884d) <br>
+- **If you run into any other issues which have not been listed above, please feel free to reach out to us.**
 
 ## Reach Out
 
@@ -87,3 +79,13 @@ Have any doubts? Feel free to reach out to us at:
 
 - Aditya S (as2397@hw.ac.uk)
 - Jonathan John Thomas (jjt2002@hw.ac.uk)
+
+## Additional Resources
+
+1.	Using Chroma vector store with LangChain: https://python.langchain.com/docs/integrations/vectorstores/chroma/
+2.	Ollama Chat models with LangChain: https://python.langchain.com/docs/integrations/chat/ollama/
+3.	Ollama Embeddings with LangChain: https://python.langchain.com/docs/integrations/text_embedding/ollama/#indexing-and-retrieval
+4.	LangChain text splitters: https://python.langchain.com/docs/how_to/recursive_text_splitter/
+5.	Streamlit UI for LLM Chat Apps: https://docs.streamlit.io/develop/tutorials/llms/build-conversational-apps
+
+
