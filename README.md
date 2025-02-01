@@ -29,7 +29,7 @@ If the application is not fast enough on your device, **try the Google Colab ver
   ollama pull nomic-embed-text
   ```
 
-- Create a folder, and a Python notebook inside it named "app.py"
+- Create a folder for the project, and make a Python script inside it named "app.py"
 - Set up a virtual environment using the below command (Recommended)
 
   ```shell
@@ -55,9 +55,7 @@ If the application is not fast enough on your device, **try the Google Colab ver
   
 - Run app.py with streamlit
   
-  ```shell
-  streamlit run code\app.py` or `python -m streamlit run code\app.py
-  ```
+  `streamlit run code\app.py` or `python -m streamlit run code\app.py`
 
 ## Debugging
 
@@ -87,5 +85,3 @@ Have any doubts? Feel free to reach out to us at:
 3.	Ollama Embeddings with LangChain: https://python.langchain.com/docs/integrations/text_embedding/ollama/#indexing-and-retrieval
 4.	LangChain text splitters: https://python.langchain.com/docs/how_to/recursive_text_splitter/
 5.	Streamlit UI for LLM Chat Apps: https://docs.streamlit.io/develop/tutorials/llms/build-conversational-apps
-
-
