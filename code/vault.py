@@ -191,7 +191,8 @@ retriever = vector_store.as_retriever(
 # ---------------------------- Streamlit UI ----------------------------
 # # 1. DISPLAY CHAT MESSAGES
 st.title("Vault App")
-st.markdown("_Welcome to the Vault App! Upload your documents and ask questions about them!_")
+
+st.markdown("Welcome to the Vault App! Upload a file and ask a question to retrieve relevant context from the uploaded documents.")
 
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
@@ -214,7 +215,7 @@ if uploaded_files:
 
 # Settings
 st.sidebar.header("Settings")
-st.session_state["model"] = st.sidebar.selectbox("Select Model", ["gemma2:2b"], index=0) # Model to use
+st.session_state["model"] = st.sidebar.selectbox("Select Model", ["gemma2:2b", "gemma2"], index=0) # Model to use
 st.session_state["top_k"] = st.sidebar.slider("Top K Context", 1, 5, value=st.session_state.top_k)  # Top K context to retrieve
 
 # Toggle to reset conversation

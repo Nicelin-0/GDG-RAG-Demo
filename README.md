@@ -1,5 +1,8 @@
 # GDG-RAG-Demo
 
+View the UI of the live app at [VaultApp](https://vaultapp.streamlit.app) <br>
+View the code in Google Colab at [GoogleColab](https://colab.research.google.com/drive/1Hqru_V6wlqE686eDngfkK_9dAZHkMrIt?usp=sharing)
+
 ## Supported Python versions
 
 ![Python 3.12](https://github.com/jonathanjthomas/GDG-RAG-Demo/actions/workflows/python-3.12.yml/badge.svg)
@@ -10,6 +13,8 @@
 
 - **GPU:** 8 GB VRAM
 - **RAM:** 16 GB RAM
+
+**Don't worry if you have a GPU with a lesser amount of VRAM, 8 GB is recommended mostly for use with the Gemma:9b, however this application works perfectly fine with the Gemma:2b as well, so a minimum of 4 GB VRAM should suffice**
 
 ## How to run the Streamlit application
 
@@ -55,6 +60,26 @@
 - Run vault.py with streamlit
 
   `streamlit run code\vault.py` or `python -m streamlit run code\vault.py`
+
+## Debugging
+
+- If you face any conflicts with existing dependencies, make sure you have activated your virtual environment
+
+- If you run into an error showing:
+  ```shell
+  httpx.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+  ```
+  Then try running the following to resolve the issue
+  ```shell
+  ollama serve
+  ```
+- **If you run into any other issues which have not been listed above, please feel free to reach out to us**
+
+## Additional Resources
+
+[Source code on Google Colab](https://colab.research.google.com/drive/1Hqru_V6wlqE686eDngfkK_9dAZHkMrIt?usp=sharing) <br>
+[Gemma 2 - Local RAG with Ollama and LangChain](https://www.youtube.com/watch?v=daZOrbMs61I&t=8s) <br>
+[How to Build a Local RAG Knowledge Base with Google Gemma 2 2B](https://sebastian-petrus.medium.com/building-a-local-rag-knowledge-base-with-google-gemma-2-2b-5823cdfe884d) <br>
 
 ## Reach Out
 
