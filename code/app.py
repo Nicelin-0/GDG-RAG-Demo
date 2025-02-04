@@ -57,58 +57,6 @@ def add_to_vector_store(file, vector_store, chunk_size=1000, chunk_overlap=200):
   
 # ---------------------------- 2 - Query Processing ----------------------------
 
-# Function to rewrite the user's query based on recent conversation history
-# def rewrite_query(user_query, llm, conversation_history):
-
-#     # Get the last two messages from the conversation history
-#     context = "\n".join([f"{msg['role']}: {msg['content']}" for msg in conversation_history[-2:]])
-
-#     prompt = ChatPromptTemplate.from_messages(
-#         [("system","You are a helpful assistant that rewrites user query."),
-#         ("human", """Rewrite the following user query by incorporating relevant context from the last two messages of the conversation history.
-# The rewritten query should:
-
-# - Preserve the core intent and meaning of the original query
-# - Avoid introducing new topics or queries that deviate from the original query
-# - Be concise and clear, without any unnecessary information or repetition
-# - Keep the same tone and style as the original query
-# - DONT EVER ANSWER the Original query, but instead focus on rephrasing and expanding it into a new query
-# - Return the output as plain text, without any additional formatting
-
-# Return ONLY the rewritten query text, without any additional formatting or explanations.
-
-# Conversation History:
-# ```
-# {context}
-# ```
-
-# Original query: 
-# ```
-# {user_query}
-# ```
-
-# Rewritten query:
-# """
-#             ),
-#         ])
-
-#     # Generate the rewritten query using the LangChain 
-#     chain = prompt | llm
-#     ai_message = chain.invoke(
-#         {
-#             "context": context,
-#             "user_query": user_query,
-#         }
-#     )   
-
-#     # Extract the rewritten query from the AI message
-#     rewritten_query = ai_message.content.strip()
-
-#     print("Original query:", user_query)
-#     print("Rewritten query:", rewritten_query)
-
-#     return rewritten_query
-
 def rewrite_query(user_query, llm):
 
     prompt = ChatPromptTemplate.from_messages([
