@@ -61,13 +61,12 @@ def rewrite_query(user_query, llm):
 
     prompt = ChatPromptTemplate.from_messages([
         ("system", "You are a knowledgeable assistant that generates a well-formed document to answer a question."),
-        ("human", f"""Create a document that answers the following question using relevant context from the last two messages of the conversation history.
+        ("human", f"""Create a document that answers the below question.
         
 The document should:
 - Be well-structured and informative
 - Provide a detailed response that directly answers the question
-- Maintain clarity and coherence, avoiding unnecessary details
-- Ensure relevance to the conversation context
+- Maintain clarity and coherence
 
 Question:
 ```
@@ -94,11 +93,8 @@ Generated Document:
 
 # Function to handle the user input submission
 def chat(user_query, llm, retriever, conversation_history):   
-    # Rewrite the user's query based on the conversation history
-    if len(conversation_history) > 1:
-        rewritten_query = rewrite_query(user_query, llm)
-    else:
-        rewritten_query = user_query
+    # Rewrite query to utilize Hypothetical Document Embeddings (HyDE)
+    rewritten_query = rewrite_query(user_query, llm)
         
     # Retrieve relevant context for the rewritten query from the vector database
     retrieved_documents = retriever.invoke(rewritten_query)
