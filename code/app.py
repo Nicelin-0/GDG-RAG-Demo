@@ -58,62 +58,97 @@ def add_to_vector_store(file, vector_store, chunk_size=1000, chunk_overlap=200):
 # ---------------------------- 2 - Query Processing ----------------------------
 
 # Function to rewrite the user's query based on recent conversation history
-def rewrite_query(user_query, llm, conversation_history):
+# def rewrite_query(user_query, llm, conversation_history):
 
-    # Get the last two messages from the conversation history
-    context = "\n".join([f"{msg['role']}: {msg['content']}" for msg in conversation_history[-2:]])
+#     # Get the last two messages from the conversation history
+#     context = "\n".join([f"{msg['role']}: {msg['content']}" for msg in conversation_history[-2:]])
 
-    prompt = ChatPromptTemplate.from_messages(
-        [("system","You are a helpful assistant that rewrites user query."),
-        ("human", """Rewrite the following user query by incorporating relevant context from the last two messages of the conversation history.
-The rewritten query should:
+#     prompt = ChatPromptTemplate.from_messages(
+#         [("system","You are a helpful assistant that rewrites user query."),
+#         ("human", """Rewrite the following user query by incorporating relevant context from the last two messages of the conversation history.
+# The rewritten query should:
 
-- Preserve the core intent and meaning of the original query
-- Avoid introducing new topics or queries that deviate from the original query
-- Be concise and clear, without any unnecessary information or repetition
-- Keep the same tone and style as the original query
-- DONT EVER ANSWER the Original query, but instead focus on rephrasing and expanding it into a new query
-- Return the output as plain text, without any additional formatting
+# - Preserve the core intent and meaning of the original query
+# - Avoid introducing new topics or queries that deviate from the original query
+# - Be concise and clear, without any unnecessary information or repetition
+# - Keep the same tone and style as the original query
+# - DONT EVER ANSWER the Original query, but instead focus on rephrasing and expanding it into a new query
+# - Return the output as plain text, without any additional formatting
 
-Return ONLY the rewritten query text, without any additional formatting or explanations.
+# Return ONLY the rewritten query text, without any additional formatting or explanations.
 
-Conversation History:
-```
-{context}
-```
+# Conversation History:
+# ```
+# {context}
+# ```
 
-Original query: 
+# Original query: 
+# ```
+# {user_query}
+# ```
+
+# Rewritten query:
+# """
+#             ),
+#         ])
+
+#     # Generate the rewritten query using the LangChain 
+#     chain = prompt | llm
+#     ai_message = chain.invoke(
+#         {
+#             "context": context,
+#             "user_query": user_query,
+#         }
+#     )   
+
+#     # Extract the rewritten query from the AI message
+#     rewritten_query = ai_message.content.strip()
+
+#     print("Original query:", user_query)
+#     print("Rewritten query:", rewritten_query)
+
+#     return rewritten_query
+
+def rewrite_query(user_query, llm):
+
+    prompt = ChatPromptTemplate.from_messages([
+        ("system", "You are a knowledgeable assistant that generates a well-formed document to answer a question."),
+        ("human", f"""Create a document that answers the following question using relevant context from the last two messages of the conversation history.
+        
+The document should:
+- Be well-structured and informative
+- Provide a detailed response that directly answers the question
+- Maintain clarity and coherence, avoiding unnecessary details
+- Ensure relevance to the conversation context
+
+Question:
 ```
 {user_query}
 ```
 
-Rewritten query:
-"""
-            ),
-        ])
+Generated Document:
+""")
+    ])
 
-    # Generate the rewritten query using the LangChain 
+    # Generate the hypothetical document using the LangChain model
     chain = prompt | llm
-    ai_message = chain.invoke(
-        {
-            "context": context,
-            "user_query": user_query,
-        }
-    )   
+    ai_message = chain.invoke({
+        "user_query": user_query,
+    })
 
-    # Extract the rewritten query from the AI message
-    rewritten_query = ai_message.content.strip()
+    # Append the original query to ensure context is retained
+    hypothetical_document = user_query + "\n" + ai_message.content.strip()
 
     print("Original query:", user_query)
-    print("Rewritten query:", rewritten_query)
+    print("Generated Hypothetical Document:", hypothetical_document)
 
-    return rewritten_query
+    return hypothetical_document
 
 # Function to handle the user input submission
 def chat(user_query, llm, retriever, conversation_history):   
     # Rewrite the user's query based on the conversation history
     if len(conversation_history) > 1:
-        rewritten_query = rewrite_query(user_query, llm, conversation_history)
+        rewritten_query = rewrite_query(user_query, llm)
     else:
         rewritten_query = user_query
         
