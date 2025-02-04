@@ -231,6 +231,7 @@ st.title("Vault App")
 
 st.markdown("Welcome to the Vault App! Upload a file and ask a question to retrieve relevant context from the uploaded documents.")
 
+# Go through the chat history and display the messages
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
