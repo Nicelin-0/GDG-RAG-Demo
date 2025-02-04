@@ -1,66 +1,87 @@
-# GDG-RAG-Demo
+# The Vault App
+## Demo for [Build with AI - A Hands-On Introduction to Retrieval Augmented Generation (RAG)](https://gdg.community.dev/events/details/google-gdg-on-campus-heriot-watt-university-dubai-dubai-united-arab-emirates-presents-build-with-ai-a-hands-on-introduction-to-retrieval-augmented-generation-rag/) @ Google Developer Group - Heriot-Watt University, Dubai
 
-## Supported Python versions
+View the UI of the live app at [VaultApp](https://vaultapp.streamlit.app) <br>
+View the Google Colab version at [GoogleColab](https://colab.research.google.com/drive/1Hqru_V6wlqE686eDngfkK_9dAZHkMrIt?usp=sharing)
 
-![Python 3.9](https://github.com/jonathanjthomas/GDG-RAG-Demo/actions/workflows/python-3.9.yml/badge.svg)
-![Python 3.10](https://github.com/jonathanjthomas/GDG-RAG-Demo/actions/workflows/python-3.10.yml/badge.svg)
-![Python 3.11](https://github.com/jonathanjthomas/GDG-RAG-Demo/actions/workflows/python-3.11.yml/badge.svg)
+## Instructions
+
+### Supported Python versions
+
 ![Python 3.12](https://github.com/jonathanjthomas/GDG-RAG-Demo/actions/workflows/python-3.12.yml/badge.svg)
 
-# Instructions
+### Recommended system specifications
 
-## Our environment setup
+- **GPU:** 8 GB VRAM
+- **RAM:** 16 GB RAM
 
-- **OS:** Windows 11
-- **Python Version:** Python 3.12.5
-- **CPU:** Intel i7-13700H
-- **GPU:** RTX 4060 (8 GB VRAM)
-- **RAM:** 16 GB DDR5 (5200 MHz) RAM
+**Don't worry if you have a GPU with a lesser amount of VRAM, 8 GB is recommended for use with the Gemma:9b model, however, this application works perfectly fine with the Gemma:2b as well, so a minimum of 4 GB VRAM should suffice.**
 
-## How to run the streamlit application
+If the application is not fast enough on your device, **try the Google Colab version** [here](https://colab.research.google.com/drive/1Hqru_V6wlqE686eDngfkK_9dAZHkMrIt?usp=sharing).
 
-- Make sure you have Python and Git installed on your system
-- Clone the repository on to your local machine using Git
-  ```shell
-  git clone https://github.com/jonathanjthomas/GDG-RAG-Demo.git
+### Demo Set-Up (For Build with AI Attendees)
+- Download and install [Ollama](https://ollama.com/download)
+- Pull the required Ollama models (gemma2, gemma2:2b and nomic-embed-text)
+  
+ ```shell
+  ollama pull gemma2:2b
+  ollama pull gemma2
+  ollama pull nomic-embed-text
   ```
-- Set up a virtual environment using the below command
-  ```python
+
+- Create a folder for the project, and make a Python script inside it named "app.py"
+- Set up a virtual environment using the below command (Recommended)
+
+  ```shell
   python -m venv venv
   ```
-- Activate your virtual environment using
-  - Windows
-    ```python
+
+- Activate your virtual environment using the following command:
+
+  - On Windows:
+    ```shell
     venv\Scripts\Activate
     ```
-  - Linux and MacOS
-    ```python
+  - On Linux/MacOS:
+    ```shell
     source venv/bin/activate
     ```
+
 - Install all the required libraries and dependencies
-  ```python
-  pip install -r requirements.txt
+
+  ```shell
+  pip install langchain-ollama langchain-chroma>=0.1.2 langchain-community pypdf jq streamlit
   ```
+  
+- Run app.py with streamlit
+  
+  `streamlit run code\app.py` or `python -m streamlit run code\app.py`
 
-## File Structure
+## Debugging
 
-- **Test Folder**
+- If you face any conflicts with existing dependencies, make sure you have activated your virtual environment
 
-  - The test folder contains:
-    - **File Upload Test:** The files here were test files for checking if the file upload functions were working, feel free to run these files to see it for yourself
-    - **Ollama Test:** These python files were to check if the connection with the Ollama server was set up, again feel free to run these to troubleshoot any problems you might be facing
-
-- **Code**
-  - The folder contains:
-    - **Streamlit:** All the files here set up a streamlit UI for interacting with the LLM
-      1. **`ContextStreamlit.py`:** sets up the Streamlit UI to show how the system retrieves the context for a given input
-      2. **`chatUIStreamlit.py`:** This is the final UI composing of a chat-like UI for interacting with the LLM along with a sidebar where you can upload files
-    - **`upload.py`:** Run this first to upload your files using a Tkinter GUI, this shall be used along with `localrag.py` so you can chat with your documents from the terminal
-    - **`localrag.py`:** Run this after running `upload.py` to chat with the document you have uploaded
+- If you run into the following error:
+  ```shell
+  httpx.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+  ```
+  Then try running the following to resolve the issue
+  ```shell
+  ollama serve
+  ```
+- **If you run into any other issues which have not been listed above, please feel free to reach out to us.**
 
 ## Reach Out
 
 Have any doubts? Feel free to reach out to us at:
 
 - Aditya S (as2397@hw.ac.uk)
-- Jonathan (jjt2002@hw.ac.uk)
+- Jonathan John Thomas (jjt2002@hw.ac.uk)
+
+## Additional Resources
+
+1.	Using Chroma vector store with LangChain: https://python.langchain.com/docs/integrations/vectorstores/chroma/
+2.	Ollama Chat models with LangChain: https://python.langchain.com/docs/integrations/chat/ollama/
+3.	Ollama Embeddings with LangChain: https://python.langchain.com/docs/integrations/text_embedding/ollama/#indexing-and-retrieval
+4.	LangChain text splitters: https://python.langchain.com/docs/how_to/recursive_text_splitter/
+5.	Streamlit UI for LLM Chat Apps: https://docs.streamlit.io/develop/tutorials/llms/build-conversational-apps
