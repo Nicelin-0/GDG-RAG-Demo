@@ -2,7 +2,4 @@
 
 # Virtual Environments
 *venv
-*jonathan
-
-vault.txt
-*chroma_langchain_db
+chroma_langchain_db
