@@ -92,6 +92,7 @@ Rewritten query:
             ),
         ])
 
+    # Generate the rewritten query using the LangChain 
     chain = prompt | llm
     ai_message = chain.invoke(
         {
@@ -100,6 +101,7 @@ Rewritten query:
         }
     )   
 
+    # Extract the rewritten query from the AI message
     rewritten_query = ai_message.content.strip()
 
     print("Original query:", user_query)
