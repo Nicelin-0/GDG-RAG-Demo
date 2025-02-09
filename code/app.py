@@ -173,7 +173,7 @@ retriever = vector_store.as_retriever(
 # # 1. DISPLAY CHAT MESSAGES
 st.title("Vault App")
 
-st.markdown("Welcome to the Vault App! Upload a file and ask a question to retrieve relevant context from the uploaded documents.")
+st.markdown("👋 Welcome to the Vault App! Upload a file and ask a question to retrieve relevant context from the uploaded documents.")
 
 # Go through the chat history and display the messages
 for message in st.session_state.messages:
