@@ -10,6 +10,8 @@ New Features Added:<br>
 ✅ Multi-Collection Support: Allows users to switch between collections and creates new collections dynamically.<br>
 ✅ Source Citations: Displays document sources used in the last response in the sidebar.<br>
 ✅ Modified Query Processing: Stores retrieved documents in st.session_state['retrieved_documents'] for citation display.<br>
+✅ Reset Conversation Button: Adds a button in the sidebar to clear the chat history and reset the conversation.<br>
+
 
 
 
