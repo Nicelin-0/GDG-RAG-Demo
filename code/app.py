@@ -307,3 +307,10 @@ if 'selected_collection' not in st.session_state:
 # Select or create a collection
 selected_collection = st.sidebar.selectbox("Select Collection", st.session_state['collections'])
 
+# Button to create a new collection
+new_collection_name = st.sidebar.text_input("New Collection Name")
+if st.sidebar.button("Create Collection") and new_collection_name:
+    if new_collection_name not in st.session_state['collections']:
+        st.session_state['collections'].append(new_collection_name)
+        st.toast(f"Created new collection: **{new_collection_name}**", icon="🎉")
+
