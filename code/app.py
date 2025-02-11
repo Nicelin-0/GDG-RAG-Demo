@@ -200,6 +200,10 @@ st.sidebar.header("Settings")
 st.session_state["model"] = st.sidebar.selectbox("Select Model", ["gemma2:2b", "gemma2"], index=0) # Model to use
 st.session_state["top_k"] = st.sidebar.slider("Top K Context", 1, 5, value=st.session_state.top_k)  # Top K context to retrieve
 
+uploaded_avatar = st.sidebar.file_uploader("Upload Avatar", type=["jpg", "png"])
+if uploaded_avatar:
+    st.sidebar.image(uploaded_avatar, width=50)  # Display avatar next to messages
+    
 # Toggle to reset conversation
 st.sidebar.button("Reset Conversation", on_click= lambda: st.session_state.update(messages=[]))
 
