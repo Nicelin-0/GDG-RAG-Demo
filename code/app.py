@@ -324,3 +324,13 @@ if selected_collection != st.session_state['selected_collection']:
     )
     retriever = vector_store.as_retriever(search_type="similarity", search_kwargs={"k": st.session_state['top_k']})
     st.toast(f"Switched to collection: **{selected_collection}**", icon="🔄")
+
+
+# ---------------------------- Source Citation in Chat ----------------------------
+st.sidebar.header("Source Citations")
+
+if 'retrieved_documents' in st.session_state and st.session_state['retrieved_documents']:
+    st.sidebar.subheader("Sources Used in Last Response:")
+    for doc in st.session_state['retrieved_documents']:
+        st.sidebar.markdown(f"- **{doc.metadata.get('source', 'Unknown Source')}**")
+
