@@ -229,8 +229,17 @@ if user_query:
                     llm = llm, 
                     retriever = retriever,
                     conversation_history = st.session_state['messages'][:-1:])
-        
+
         response = st.write_stream(stream)
+        thumbs_up = st.button("👍", key=f"thumbs_up_{response}")  # Thumbs up button for response
+        thumbs_down = st.button("👎", key=f"thumbs_down_{response}")  # Thumbs down button for response
+
+        # Append feedback to session state
+        if thumbs_up:
+            st.session_state["feedback"].append("positive")
+        elif thumbs_down:
+            st.session_state["feedback"].append("negative")
+
 
     st.session_state.messages.append({"role": "assistant", "content": response})
 
