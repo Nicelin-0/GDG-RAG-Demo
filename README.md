@@ -1,12 +1,12 @@
 # The Vault App
 
 New Features Added:
-✅ File Deletion from Sidebar: Users can now delete uploaded files directly from the sidebar for convenience.
-✅ Metadata Display for Uploaded Files: View detailed metadata (like file name, size, etc.) for each uploaded file.
-✅ Context Preview Feature: Get a preview of the content from your uploaded files before querying, improving the user experience.
-✅ Multi-file Querying: You can now query multiple files at once, making it easier to handle large datasets.
-✅ Interactive Chat UI Improvements: Enjoy a smoother chat experience with additional features, including thumbs up/down buttons for user feedback on assistant responses.
-✅ Dynamic User Avatars: Upload a custom avatar image in the sidebar, which will appear next to your messages, making the chat more personalized.
+✅ File Deletion from Sidebar: Users can now delete uploaded files directly from the sidebar for convenience.<br>
+✅ Metadata Display for Uploaded Files: View detailed metadata (like file name, size, etc.) for each uploaded file.<br>
+✅ Context Preview Feature: Get a preview of the content from your uploaded files before querying, improving the user experience.<br>
+✅ Multi-file Querying: You can now query multiple files at once, making it easier to handle large datasets.<br>
+✅ Interactive Chat UI Improvements: Enjoy a smoother chat experience with additional features, including thumbs up/down buttons for user feedback on assistant responses.<br>
+✅ Dynamic User Avatars: Upload a custom avatar image in the sidebar, which will appear next to your messages, making the chat more personalized.<br>
 
 
 
