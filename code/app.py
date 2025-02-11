@@ -313,4 +313,14 @@ if st.sidebar.button("Create Collection") and new_collection_name:
     if new_collection_name not in st.session_state['collections']:
         st.session_state['collections'].append(new_collection_name)
         st.toast(f"Created new collection: **{new_collection_name}**", icon="🎉")
-
+        
+# Switch to selected collection
+if selected_collection != st.session_state['selected_collection']:
+    st.session_state['selected_collection'] = selected_collection
+    vector_store = Chroma(
+        collection_name=selected_collection,
+        embedding_function=embeddings,
+        persist_directory="./chroma_langchain_db",
+    )
+    retriever = vector_store.as_retriever(search_type="similarity", search_kwargs={"k": st.session_state['top_k']})
+    st.toast(f"Switched to collection: **{selected_collection}**", icon="🔄")
