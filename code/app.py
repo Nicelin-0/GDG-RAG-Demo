@@ -251,3 +251,12 @@ if st.session_state['uploaded_files']:
         st.toast(f"**Deleted {file_to_delete} from Vault**", icon="🗑️")
     
     st.sidebar.button("Delete File", on_click=delete_selected_file)
+
+
+# ---------------------------- Metadata Display for Uploaded Files ----------------------------
+# Display file metadata in a table
+st.sidebar.header("Uploaded Files Metadata")
+
+if st.session_state['uploaded_files']:
+    file_data = [{"File Name": file.name, "Type": file.type, "Chunks": len(PyPDFLoader(file).load()) if file.type == "application/pdf" else "N/A"} for file in st.session_state['uploaded_files']]
+    st.sidebar.table(file_data)
