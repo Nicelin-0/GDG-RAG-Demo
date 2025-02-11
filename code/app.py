@@ -341,3 +341,5 @@ def chat(user_query, llm, retriever, conversation_history):
 
   # Store retrieved documents in session state for citation
     st.session_state['retrieved_documents'] = retrieved_documents  
+
+    context = "\n\n".join([doc.page_content for doc in retrieved_documents])
