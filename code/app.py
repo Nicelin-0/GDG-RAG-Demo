@@ -240,4 +240,14 @@ st.sidebar.header("Manage Uploaded Files")
 
 if st.session_state['uploaded_files']:
     file_to_delete = st.sidebar.selectbox("Select file to delete", [file.name for file in st.session_state['uploaded_files']])
-  
+     
+    def delete_selected_file():
+        # Remove file from session state
+        st.session_state['uploaded_files'] = [file for file in st.session_state['uploaded_files'] if file.name != file_to_delete]
+        
+        # Remove related entries from ChromaDB
+        vector_store.delete(ids=[file_to_delete])
+        
+        st.toast(f"**Deleted {file_to_delete} from Vault**", icon="🗑️")
+    
+    st.sidebar.button("Delete File", on_click=delete_selected_file)
