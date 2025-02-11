@@ -233,3 +233,11 @@ if user_query:
         response = st.write_stream(stream)
 
     st.session_state.messages.append({"role": "assistant", "content": response})
+
+# ---------------------------- File Deletion from Sidebar ----------------------------
+# Modify the sidebar to allow individual file deletion
+st.sidebar.header("Manage Uploaded Files")
+
+if st.session_state['uploaded_files']:
+    file_to_delete = st.sidebar.selectbox("Select file to delete", [file.name for file in st.session_state['uploaded_files']])
+  
