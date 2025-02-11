@@ -279,10 +279,15 @@ if st.session_state['uploaded_files']:
     st.sidebar.table(file_data)
 
 # ---------------------------- Context Preview Feature ----------------------------
+# Context Preview with expandable sections
 st.sidebar.header("Context Preview")
 if 'retrieved_context' in st.session_state and st.session_state['retrieved_context']:
+    preview_text = "\n\n".join(st.session_state['retrieved_context'].split("\n")[:5])  # Show only the first 5 lines
     with st.expander("View Retrieved Context"):
-        st.write(st.session_state['retrieved_context'])
+        st.write(preview_text)
+        if len(st.session_state['retrieved_context'].split("\n")) > 5:
+            st.write("... (expand to see more)")
+
 
 # ---------------------------- Multi-File Querying ----------------------------
 st.sidebar.header("Select Files for Query")
