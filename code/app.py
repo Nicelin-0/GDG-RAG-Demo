@@ -278,3 +278,8 @@ if st.session_state['uploaded_files']:
     def filter_retrieved_documents(docs, selected_files):
         return [doc for doc in docs if doc.metadata.get("source") in selected_files]
 
+    # Modify query processing to filter documents based on selection
+    if 'retrieved_documents' in st.session_state:
+        st.session_state['retrieved_documents'] = filter_retrieved_documents(st.session_state['retrieved_documents'], selected_files)
+
+
