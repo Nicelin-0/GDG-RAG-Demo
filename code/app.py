@@ -295,4 +295,15 @@ if st.session_state['uploaded_files']:
     if 'retrieved_documents' in st.session_state:
         st.session_state['retrieved_documents'] = filter_retrieved_documents(st.session_state['retrieved_documents'], selected_files)
 
+# ---------------------------- Multi-Collection Support ----------------------------
+st.sidebar.header("Manage Collections")
+
+# Initialize collections list in session state if not present
+if 'collections' not in st.session_state:
+    st.session_state['collections'] = ["vault"]  # Default collection
+if 'selected_collection' not in st.session_state:
+    st.session_state['selected_collection'] = "vault"
+
+# Select or create a collection
+selected_collection = st.sidebar.selectbox("Select Collection", st.session_state['collections'])
 
