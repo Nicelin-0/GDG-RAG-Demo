@@ -1,6 +1,6 @@
 # The Vault App
 
-New Features Added:
+New Features Added:<br>
 ✅ File Deletion from Sidebar: Users can now delete uploaded files directly from the sidebar for convenience.<br>
 ✅ Metadata Display for Uploaded Files: View detailed metadata (like file name, size, etc.) for each uploaded file.<br>
 ✅ Context Preview Feature: Get a preview of the content from your uploaded files before querying, improving the user experience.<br>
