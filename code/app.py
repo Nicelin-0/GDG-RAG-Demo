@@ -338,3 +338,6 @@ if 'retrieved_documents' in st.session_state and st.session_state['retrieved_doc
 def chat(user_query, llm, retriever, conversation_history):
     rewritten_query = rewrite_query(user_query, llm)
     retrieved_documents = retriever.invoke(rewritten_query)
+
+  # Store retrieved documents in session state for citation
+    st.session_state['retrieved_documents'] = retrieved_documents  
