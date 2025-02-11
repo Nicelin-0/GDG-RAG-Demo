@@ -343,3 +343,8 @@ def chat(user_query, llm, retriever, conversation_history):
     st.session_state['retrieved_documents'] = retrieved_documents  
 
     context = "\n\n".join([doc.page_content for doc in retrieved_documents])
+
+    messages = [
+        HumanMessage(msg['content']) if msg['role'] == 'user' else AIMessage(msg['content']) 
+        for msg in conversation_history[-4:]
+    ]
