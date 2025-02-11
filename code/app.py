@@ -351,3 +351,5 @@ def chat(user_query, llm, retriever, conversation_history):
 
     messages.insert(0, SystemMessage("Answer using retrieved context and list sources. If no relevant data, say so."))
     messages.append(HumanMessage(f"Question:\n```\n{user_query}\n```\n\nContext:\n```\n{context}\n```\n\nAnswer:"))
+
+    return llm.stream(messages)
