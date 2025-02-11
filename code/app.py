@@ -275,4 +275,6 @@ if st.session_state['uploaded_files']:
         [file.name for file in st.session_state['uploaded_files']],
         default=[file.name for file in st.session_state['uploaded_files']]
     )
+    def filter_retrieved_documents(docs, selected_files):
+        return [doc for doc in docs if doc.metadata.get("source") in selected_files]
 
