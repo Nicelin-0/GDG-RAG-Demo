@@ -7,6 +7,9 @@ New Features Added:<br>
 ✅ Multi-file Querying: You can now query multiple files at once, making it easier to handle large datasets.<br>
 ✅ Interactive Chat UI Improvements: Enjoy a smoother chat experience with additional features, including thumbs up/down buttons for user feedback on assistant responses.<br>
 ✅ Dynamic User Avatars: Upload a custom avatar image in the sidebar, which will appear next to your messages, making the chat more personalized.<br>
+✅ Multi-Collection Support: Allows users to switch between collections and creates new collections dynamically.<br>
+✅ Source Citations: Displays document sources used in the last response in the sidebar.<br>
+✅ Modified Query Processing: Stores retrieved documents in st.session_state['retrieved_documents'] for citation display.<br>
 
 
 
