@@ -334,3 +334,7 @@ if 'retrieved_documents' in st.session_state and st.session_state['retrieved_doc
     for doc in st.session_state['retrieved_documents']:
         st.sidebar.markdown(f"- **{doc.metadata.get('source', 'Unknown Source')}**")
 
+# ---------------------------- Adjusting Query Processing to Store Retrieved Docs ----------------------------
+def chat(user_query, llm, retriever, conversation_history):
+    rewritten_query = rewrite_query(user_query, llm)
+    retrieved_documents = retriever.invoke(rewritten_query)
