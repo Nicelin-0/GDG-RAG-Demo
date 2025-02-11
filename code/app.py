@@ -266,3 +266,13 @@ st.sidebar.header("Context Preview")
 if 'retrieved_context' in st.session_state and st.session_state['retrieved_context']:
     with st.expander("View Retrieved Context"):
         st.write(st.session_state['retrieved_context'])
+
+# ---------------------------- Multi-File Querying ----------------------------
+st.sidebar.header("Select Files for Query")
+if st.session_state['uploaded_files']:
+    selected_files = st.sidebar.multiselect(
+        "Choose files to include in search", 
+        [file.name for file in st.session_state['uploaded_files']],
+        default=[file.name for file in st.session_state['uploaded_files']]
+    )
+
