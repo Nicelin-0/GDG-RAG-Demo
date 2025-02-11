@@ -216,6 +216,10 @@ def clear_uploaded_files():
 
 st.sidebar.button("Clear Vault Documents", on_click = clear_uploaded_files)
 
+# ---------------------------- Reset Conversation Button ----------------------------
+# Add a reset button in the sidebar to clear the conversation history
+st.sidebar.button("Reset Conversation", on_click=lambda: st.session_state.update(messages=[]))
+
 # 3. USER INPUT
 # When the user enters a query
 user_query = st.chat_input("Enter your message")
