@@ -260,3 +260,9 @@ st.sidebar.header("Uploaded Files Metadata")
 if st.session_state['uploaded_files']:
     file_data = [{"File Name": file.name, "Type": file.type, "Chunks": len(PyPDFLoader(file).load()) if file.type == "application/pdf" else "N/A"} for file in st.session_state['uploaded_files']]
     st.sidebar.table(file_data)
+
+# ---------------------------- Context Preview Feature ----------------------------
+st.sidebar.header("Context Preview")
+if 'retrieved_context' in st.session_state and st.session_state['retrieved_context']:
+    with st.expander("View Retrieved Context"):
+        st.write(st.session_state['retrieved_context'])
